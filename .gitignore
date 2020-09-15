@@ -1,0 +1,8 @@
+# IDE Catalogue
+.idea
+
+# NPM Catalogue
+node_modules
+
+# Builded application
+build

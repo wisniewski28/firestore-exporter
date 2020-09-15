@@ -1,0 +1,19 @@
+extends ../layout.pug
+block content
+    .card-deck.mb-3.text-center
+        .card.mb-4.shadow-sm
+            .card-header
+                h4.my-0.font-weight-normal Configuration
+            .card-body.text-center
+                if errors && errors.connection
+                    .alert.alert-danger(role='alert')
+                        | Unable to connect with given key
+                if errors && errors.session
+                    .alert.alert-danger(role='alert')
+                        | Session expired
+                form(action="/configuration" method="POST" enctype="multipart/form-data")
+                    .form-group.mt-4.mb-4
+                        h6.mb-4 Service Account JSON Key
+                        input(type="file" name="saKey" placeholder="").form-control-file
+                    .form-group
+                        button.btn.btn-primary(type='submit') Next step &rarr;

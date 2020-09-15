@@ -1,0 +1,38 @@
+{
+  "name": "node-demo",
+  "version": "3.0.0",
+  "description": "This is my demo application written in NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "tsc && node build/app.js",
+    "debug": "nodemon"
+  },
+  "author": "Rafal Wisniewski",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express-fileupload": "^1.1.5",
+    "@types/express-session": "^1.17.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-session": "^1.17.1",
+    "firebase-admin": "^9.1.1",
+    "module-alias": "^2.2.2",
+    "pug": "^3.0.0",
+    "yup": "^0.29.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.26",
+    "@types/yup": "^0.29.3",
+    "eslint": "^7.5.0",
+    "nexe": "^3.3.7",
+    "nodemon": "^2.0.4",
+    "prettier": "2.0.5",
+    "typescript": "^3.9.7"
+  },
+  "_moduleAliases": {
+    "config": "config"
+  }
+}

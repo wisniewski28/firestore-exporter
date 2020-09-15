@@ -1,0 +1,38 @@
+extends ../layout.pug
+block content
+    - var collections = collections || []
+    .card-deck.mb-3.text-center
+        .card.mb-4.shadow-sm
+            .card-header
+                h4.my-0.font-weight-normal Collections
+            .card-body.text-left
+                p.mb-3 Select collections which you want to export
+                .form-check.mb-2
+                    input.form-check-input(id='selectAll' type='checkbox', onclick='toggle(this)')
+                    label.form-check-label(for="selectAll") Select all
+
+                form(action="/collections" method="POST" enctype="multipart/form-data")
+                    each collection in collections
+                        .form-check
+                            input.form-check-input(id=collection type='checkbox' name='collections' value=collection)
+                            label.form-check-label(for=collection)=collection
+
+
+                    .form-check.mt-5.mb-2
+                        input.form-check-input(id='zipped' type='checkbox' name='zipped' value=1)
+                        label.form-check-label(for="zipped") Download as zipped
+                            .small (otherwise you have to consent to the download of multiple files)
+
+
+                    .form-group.text-center
+                        button.btn.btn-primary(type='submit') Download &DownArrowBar;
+
+
+block scripts
+    script.
+        function toggle(source) {
+            let checkboxes = document.getElementsByName('collections');
+            for(let i=0, n=checkboxes.length;i<n;i++) {
+                checkboxes[i].checked = source.checked;
+            }
+        }

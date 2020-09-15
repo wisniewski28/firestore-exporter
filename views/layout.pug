@@ -1,0 +1,24 @@
+- var title = title || null
+- var errors = errors || []
+html
+    head
+        title= title + " | Fire Exporter"
+        link(href='/css/bootstrap.css', rel='stylesheet', type='text/css')
+    body
+        .d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm
+            h5.my-0.mr-md-auto.font-weight-normal Fire Exporter
+            nav.my-2.my-md-0.mr-md-3
+                a.p-2.text-dark(href='#') Home page
+                a.p-2.text-dark(href='#') Manual
+                a.p-2.text-dark(href='#') About
+            a.btn.btn-outline-primary(href='/configuration') New export
+        .container.col-6.offset-3
+            if errors && errors.validationErrors
+                each error in errors.validationErrors
+                    ul
+                        li=error
+
+            block content
+
+        block scripts
+
