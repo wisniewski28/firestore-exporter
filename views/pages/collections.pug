@@ -6,7 +6,7 @@ block content
             .card-header
                 h4.my-0.font-weight-normal Collections
             .card-body.text-left
-                p.mb-3 Select collections which you want to export
+                p.mb-3 Select the collections you want to export
                 .form-check.mb-2
                     input.form-check-input(id='selectAll' type='checkbox', onclick='toggle(this)')
                     label.form-check-label(for="selectAll") Select all
@@ -17,12 +17,17 @@ block content
                             input.form-check-input(id=collection type='checkbox' name='collections' value=collection)
                             label.form-check-label(for=collection)=collection
 
+                    .custom-control.custom-radio.custom-control-inline.mt-5
+                        input#toCsv.custom-control-input(type='radio', name='format', value='csv' checked=true)
+                        label.custom-control-label(for='toCsv') Return as CSV files
+                    .custom-control.custom-radio.custom-control-inline
+                        input#toJson.custom-control-input(type='radio', name='format', value='json')
+                        label.custom-control-label(for='toJson') Return as JSON files
 
-                    .form-check.mt-5.mb-2
+                    .form-check.mt-3.mb-2
                         input.form-check-input(id='zipped' type='checkbox' name='zipped' value=1)
                         label.form-check-label(for="zipped") Download as zipped
                             .small (otherwise you have to consent to the download of multiple files)
-
 
                     .form-group.text-center
                         button.btn.btn-primary(type='submit') Download &DownArrowBar;

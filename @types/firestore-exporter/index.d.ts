@@ -10,3 +10,11 @@ interface JsonServiceAccountKey {
   auth_provider_x509_cert_url: string;
   client_x509_cert_url: string;
 }
+
+interface FirestoreDocuments {
+  [id: string]: object;
+}
+
+interface FirestoreCollections {
+  [collection: string]: FirestoreDocuments;
+}

@@ -7,6 +7,8 @@ const modelRouting = (router: Router) => {
   const resource = 'exporter';
   const controller = ExporterController;
 
+  router.get('/', controller.homeScreenView);
+
   router.get('/configuration', controller.configurationView);
   router.post(
     '/configuration',
