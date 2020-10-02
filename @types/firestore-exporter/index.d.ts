@@ -18,3 +18,8 @@ interface FirestoreDocuments {
 interface FirestoreCollections {
   [collection: string]: FirestoreDocuments;
 }
+
+interface ExporterTempFile {
+  path: string;
+  name: string;
+}

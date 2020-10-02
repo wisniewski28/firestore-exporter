@@ -1,4 +1,9 @@
 import ObjectsToCsv from 'objects-to-csv';
+import fs from 'fs';
+import { exec, spawn } from 'child_process';
+import { log } from 'util';
+
+const TEMP_PATH = './storage/temp/';
 
 /**
  * Parses collection documents to CSV file.
@@ -21,7 +26,7 @@ export async function prepareCsv(data: FirestoreCollections, collections: []) {
   for (let collection of collections) {
     let file = parseToCsv(data[collection]);
     let fileName = collection + '.csv';
-    let filePath = './storage/temp/' + fileName;
+    let filePath = TEMP_PATH + fileName;
     await file.toDisk(filePath, {
       append: true,
     });
@@ -32,4 +37,24 @@ export async function prepareCsv(data: FirestoreCollections, collections: []) {
   }
 
   return files;
+}
+
+export async function prepareJson(data: FirestoreCollections, collections: []) {
+  let files = [];
+  for (let collection of collections) {
+    let file = JSON.stringify(data[collection]);
+    let fileName = collection + '.json';
+    let filePath = TEMP_PATH + fileName;
+    await fs.writeFileSync(filePath, file);
+    files.push({
+      path: filePath,
+      name: fileName,
+    });
+  }
+
+  return files;
+}
+
+export function removeTempFiles() {
+  // let rm = exec('rm ' + TEMP_PATH + '*');
 }

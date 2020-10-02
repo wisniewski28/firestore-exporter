@@ -4,7 +4,6 @@ import validate from 'app/core/validator';
 import ExporterController from 'app/exporter/exporter.controller';
 
 const modelRouting = (router: Router) => {
-  const resource = 'exporter';
   const controller = ExporterController;
 
   router.get('/', controller.homeScreenView);

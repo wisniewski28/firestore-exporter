@@ -10,7 +10,11 @@ import {
   retrieveDocs,
   setupDbConnection,
 } from 'app/exporter/helpers/firestore.exporter';
-import { prepareCsv } from 'app/exporter/helpers/files.exporter';
+import {
+  prepareCsv,
+  prepareJson,
+  removeTempFiles,
+} from 'app/exporter/helpers/files.exporter';
 
 class ExporterController {
   configurationRules = ConfigurationExporter;
@@ -133,14 +137,33 @@ class ExporterController {
       }
       await closeConnection();
 
-      await prepareCsv(data, collections);
+      let files: ExporterTempFile[] = [];
+
+      switch (req.validated.format) {
+        case 'csv':
+          files = await prepareCsv(data, collections);
+          break;
+
+        case 'json':
+          files = await prepareJson(data, collections);
+          break;
+
+        default:
+          res.status(500);
+          res.json({ error: 'Unsupported file format' });
+      }
 
       let archive = archiver('zip');
 
       res.attachment('documents.zip');
       archive.pipe(res);
 
-      res.status(200);
+      files.forEach((file) => {
+        archive.file(file.path, { name: file.name });
+      });
+
+      await archive.finalize();
+      removeTempFiles();
     } else {
       res.status(400);
       res.render('pages/configuration', {
