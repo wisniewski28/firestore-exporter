@@ -14,7 +14,7 @@ block content
                 form(action="/collections" method="POST" enctype="multipart/form-data")
                     each collection in collections
                         .form-check
-                            input.form-check-input(id=collection type='checkbox' name='collections' value=collection)
+                            input.form-check-input(id=collection type='checkbox' name='collections[]' value=collection)
                             label.form-check-label(for=collection)=collection
 
 

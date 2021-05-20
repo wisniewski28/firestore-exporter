@@ -1,35 +1,35 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ESNext",
     "module": "commonjs",
     "allowJs": true,
     "sourceMap": true,
-    "outDir": "build",
-    "rootDir": "src",
+    "outDir": "dist",
     "strict": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "baseUrl": "./",
     "typeRoots": [
-      "@types",
       "./node_modules/@types"
     ],
     "paths": {
       "app/*": [
         "./src/*",
-        "./build/*"
-      ],
-      "config/*": [
-        "./config/*"
+        "./dist/*"
       ]
-    },
-    "esModuleInterop": true
+    }
   },
+  "lib": [
+    "ESNext"
+  ],
   "include": [
-    "src/**/*.ts"
+    "./src/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    ".idea"
+    ".idea",
+    "node_modules"
   ]
 }

@@ -1,5 +1,5 @@
+import exporterRouting from 'app/exporter/routes/exporter.routes';
 import { Router } from 'express';
-import exporterRouting from 'app/exporter/exporter.routes';
 
 const router: Router = Router();
 
